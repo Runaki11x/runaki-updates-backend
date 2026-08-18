@@ -25,4 +25,11 @@ app.use("/api/analytics", analyticsRoutes);
 app.use("/api/audit", auditRoutes);
 
 const PORT = process.env.PORT || 4000;
-app.listen(PORT, () => console.log(`Runaki Updates & Scripts Portal API running on :${PORT}`));
+// Vercel imports this file as a serverless function and calls the exported
+// app directly — it never needs app.listen(). Only start a real listener
+// when running locally (npm run dev), so both environments work correctly.
+if (!process.env.VERCEL) {
+  app.listen(PORT, () => console.log(`Runaki Updates & Scripts Portal API running on :${PORT}`));
+}
+
+module.exports = app;
