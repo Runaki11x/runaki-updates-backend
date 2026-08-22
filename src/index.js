@@ -11,7 +11,7 @@ const analyticsRoutes = require("./routes/analytics");
 const auditRoutes = require("./routes/audit");
 
 const app = express();
-app.use(cors());
+app.use(cors({ origin: "https://runaki-updates-frontend.vercel.app" }));
 app.use(express.json());
 
 app.get("/api/health", (req, res) => res.json({ status: "ok", time: new Date().toISOString() }));
